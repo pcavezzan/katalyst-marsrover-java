@@ -1,5 +1,9 @@
 package com.zenikata.coding.rover;
 
+import com.zenikata.coding.rover.cmd.MoveForward;
+import com.zenikata.coding.rover.cmd.RotateLeft;
+import com.zenikata.coding.rover.cmd.RotateRight;
+
 import java.util.Arrays;
 
 class MarsRover {
@@ -34,26 +38,22 @@ class MarsRover {
                         throw new IllegalArgumentException("Invalid command");
                 }
             });
-        } catch (RoverBlockedByObstacleException e) {
+        } catch (CommandException e) {
             System.out.println("Blocked by obstacle.");
             this.blockedByObstacle = true;
         }
     }
 
-    private void moveForward() throws RoverBlockedByObstacleException {
-        Coordinates potentialPosition = this.grid.inDirection(this.position);
-        if (grid.presentsObstacleAt(potentialPosition)) {
-            throw new RoverBlockedByObstacleException();
-        }
-        this.position = potentialPosition;
+    private void moveForward() throws CommandException {
+        this.position = new MoveForward(this.position, this.grid).execute();
     }
 
-    private void rotateLeft() {
-        this.position = this.position.atLeft();
+    private void rotateLeft() throws CommandException{
+        this.position = new RotateLeft(this.position).execute();
     }
 
-    private void rotateRight() {
-        this.position = this.position.atRight();
+    private void rotateRight() throws CommandException {
+        this.position = new RotateRight(this.position).execute();
     }
 
     String position() {

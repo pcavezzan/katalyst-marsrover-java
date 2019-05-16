@@ -24,11 +24,11 @@ public class Coordinates extends ValueObject {
         return compassDirection;
     }
 
-    Coordinates atRight() {
+    public Coordinates atRight() {
         return new Coordinates(this.x ,this.y, this.compassDirection.atRight());
     }
 
-    Coordinates atLeft() {
+    public Coordinates atLeft() {
         return new Coordinates(this.x ,this.y, this.compassDirection.atLeft());
     }
 }
