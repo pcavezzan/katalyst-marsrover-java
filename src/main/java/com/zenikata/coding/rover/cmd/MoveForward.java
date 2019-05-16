@@ -19,13 +19,12 @@ public class MoveForward implements Command {
 	public Coordinates execute() throws CommandException {
 		Coordinates potentialPosition = this.grid.inDirection(this.position);
 		if (grid.presentsObstacleAt(potentialPosition)) {
+			this.position.setBlockedByObstacle(true);
 			throw new RoverBlockedByObstacleException();
 		}
 
 		return potentialPosition;
 	}
-
-
 
 	private static class RoverBlockedByObstacleException extends CommandException {
 	}

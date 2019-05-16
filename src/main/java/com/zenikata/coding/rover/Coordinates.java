@@ -5,6 +5,7 @@ public class Coordinates extends ValueObject {
     private final int x;
     private final int y;
     private final CardinalDirection compassDirection;
+	private boolean blockedByObstacle;
 
     Coordinates(int x, int y, final CardinalDirection compassDirection) {
         this.x = x;
@@ -31,4 +32,12 @@ public class Coordinates extends ValueObject {
     public Coordinates atLeft() {
         return new Coordinates(this.x ,this.y, this.compassDirection.atLeft());
     }
+
+    boolean isBlockedByObstacle() {
+		return blockedByObstacle;
+	}
+
+	public void setBlockedByObstacle(boolean blockedByObstacle) {
+		this.blockedByObstacle = blockedByObstacle;
+	}
 }

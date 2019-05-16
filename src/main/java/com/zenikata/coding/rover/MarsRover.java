@@ -9,15 +9,12 @@ import java.util.Arrays;
 class MarsRover {
 
     private Coordinates position;
-
     private Grid grid;
-    private boolean blockedByObstacle;
 
 
     MarsRover(Grid grid) {
         this.grid = grid;
         this.position = new Coordinates(0, 0, CardinalDirection.NORTH);
-        this.blockedByObstacle = false;
     }
 
     void execute(String commands) {
@@ -40,7 +37,6 @@ class MarsRover {
             });
         } catch (CommandException e) {
             System.out.println("Blocked by obstacle.");
-            this.blockedByObstacle = true;
         }
     }
 
@@ -57,12 +53,9 @@ class MarsRover {
     }
 
     String position() {
-        return (this.blockedByObstacle ? "O:" : "")
+        return (this.position.isBlockedByObstacle() ? "O:" : "")
                 + this.position.getX() + ":"
                 + this.position.getY() + ":"
                 + this.position.getCompassDirection().getSymbol();
-    }
-
-    private static class RoverBlockedByObstacleException extends RuntimeException {
     }
 }
