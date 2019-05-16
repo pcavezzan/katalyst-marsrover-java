@@ -5,12 +5,12 @@ import com.zenikata.coding.rover.CommandException;
 import com.zenikata.coding.rover.Coordinates;
 import com.zenikata.coding.rover.Grid;
 
-public class MoveForward implements Command {
+class MoveForward implements Command {
 
 	private final Coordinates position;
 	private final Grid grid;
 
-	public MoveForward(final Coordinates position, final Grid grid) {
+	MoveForward(final Coordinates position, final Grid grid) {
 		this.position = position;
 		this.grid = grid;
 	}

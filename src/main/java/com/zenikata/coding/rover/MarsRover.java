@@ -1,9 +1,5 @@
 package com.zenikata.coding.rover;
 
-import com.zenikata.coding.rover.cmd.MoveForward;
-import com.zenikata.coding.rover.cmd.RotateLeft;
-import com.zenikata.coding.rover.cmd.RotateRight;
-
 import java.util.Arrays;
 
 class MarsRover {
@@ -18,22 +14,10 @@ class MarsRover {
     }
 
     void execute(String commands) {
-
         try {
-            Arrays.stream(commands.split("")).forEach(command -> {
-                switch (command) {
-                    case "M":
-						this.position = new MoveForward(this.position, this.grid).execute();
-                        break;
-                    case "R":
-						this.position = new RotateLeft(this.position).execute();
-                        break;
-                    case "L":
-						this.position = new RotateRight(this.position).execute();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid command");
-                }
+            Arrays.stream(commands.split("")).forEach(name -> {
+            	final Command command = Command.create(name, position, grid);
+            	this.position = command.execute();
             });
         } catch (CommandException e) {
             System.out.println("Blocked by obstacle.");

@@ -4,11 +4,11 @@ import com.zenikata.coding.rover.Command;
 import com.zenikata.coding.rover.CommandException;
 import com.zenikata.coding.rover.Coordinates;
 
-public class RotateLeft implements Command {
+class RotateLeft implements Command {
 
 	private final Coordinates position;
 
-	public RotateLeft(final Coordinates position) {
+	RotateLeft(final Coordinates position) {
 		this.position = position;
 	}
 
