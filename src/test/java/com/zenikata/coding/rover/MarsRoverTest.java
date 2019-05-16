@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class MarsRoverTest {
 
-    Grid grid = new Grid(Collections.emptyList());
+    private Grid grid = new Grid(Collections.emptyList());
 
     @Test
     void rover_initial_position_is_at_the_grid_origin_and_facing_north() {
@@ -124,7 +124,7 @@ class MarsRoverTest {
 
     @Test
     void rover_moves_up_to_the_last_possible_position_and_reports_the_obstacle() {
-        Grid grid = new Grid(Collections.singletonList(new Coordinates(0, 3)));
+        Grid grid = new Grid(Collections.singletonList(new Coordinates(0, 3, CardinalDirection.NORTH)));
         MarsRover rover = new MarsRover(grid);
 
         rover.execute("MMMMRM");

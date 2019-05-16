@@ -5,15 +5,14 @@ import java.util.Arrays;
 class MarsRover {
 
     private Coordinates position;
-    private CardinalDirection compassDirection;
+
     private Grid grid;
     private boolean blockedByObstacle;
 
 
     public MarsRover(Grid grid) {
         this.grid = grid;
-        this.position = new Coordinates(0, 0);
-        this.compassDirection = CardinalDirection.NORTH;
+        this.position = new Coordinates(0, 0, CardinalDirection.NORTH);
         this.blockedByObstacle = false;
     }
 
@@ -42,7 +41,7 @@ class MarsRover {
     }
 
     private void moveForward() throws RoverBlockedByObstacleException {
-        Coordinates potentialPosition = this.grid.inDirection(this.position, this.compassDirection);
+        Coordinates potentialPosition = this.grid.inDirection(this.position);
         if (grid.presentsObstacleAt(potentialPosition)) {
             throw new RoverBlockedByObstacleException();
         }
@@ -50,18 +49,18 @@ class MarsRover {
     }
 
     private void rotateLeft() {
-        this.compassDirection = this.compassDirection.atLeft();
+        this.position = this.position.atLeft();
     }
 
     private void rotateRight() {
-        this.compassDirection = this.compassDirection.atRight();
+        this.position = this.position.atRight();
     }
 
     public String position() {
         return (this.blockedByObstacle ? "O:" : "")
                 + this.position.getX() + ":"
                 + this.position.getY() + ":"
-                + this.compassDirection.getSymbol();
+                + this.position.getCompassDirection().getSymbol();
     }
 
     private static class RoverBlockedByObstacleException extends RuntimeException {

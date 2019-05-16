@@ -15,16 +15,16 @@ public class Grid {
         return obstacles.contains(coordinates);
     }
 
-    public Coordinates inDirection(Coordinates origin, CardinalDirection direction) {
-        switch (direction) {
+    public Coordinates inDirection(final Coordinates position) {
+        switch (position.getCompassDirection()) {
             case NORTH:
-                return new Coordinates(origin.getX(), (origin.getY() + 1) % GRID_SIZE);
+                return new Coordinates(position.getX(), (position.getY() + 1) % GRID_SIZE, CardinalDirection.NORTH);
             case EAST:
-                return new Coordinates((origin.getX() + 1) % GRID_SIZE, origin.getY());
+                return new Coordinates((position.getX() + 1) % GRID_SIZE, position.getY(), CardinalDirection.EAST) ;
             case SOUTH:
-                return new Coordinates(origin.getX(), (origin.getY() - 1) % GRID_SIZE);
+                return new Coordinates(position.getX(), (position.getY() - 1) % GRID_SIZE, CardinalDirection.SOUTH);
             case WEST:
-                return new Coordinates((origin.getX() - 1) % GRID_SIZE, origin.getY());
+                return new Coordinates((position.getX() - 1) % GRID_SIZE, position.getY(), CardinalDirection.WEST);
             default:
                 throw new IllegalStateException("ZIZ IZ IMPOZIBLE");
         }
