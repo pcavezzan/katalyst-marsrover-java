@@ -23,13 +23,13 @@ class MarsRover {
             Arrays.stream(commands.split("")).forEach(command -> {
                 switch (command) {
                     case "M":
-                        moveForward();
+						this.position = new MoveForward(this.position, this.grid).execute();
                         break;
                     case "R":
-                        rotateRight();
+						this.position = new RotateLeft(this.position).execute();
                         break;
                     case "L":
-                        rotateLeft();
+						this.position = new RotateRight(this.position).execute();
                         break;
                     default:
                         throw new IllegalArgumentException("Invalid command");
@@ -40,17 +40,6 @@ class MarsRover {
         }
     }
 
-    private void moveForward() throws CommandException {
-        this.position = new MoveForward(this.position, this.grid).execute();
-    }
-
-    private void rotateLeft() throws CommandException{
-        this.position = new RotateLeft(this.position).execute();
-    }
-
-    private void rotateRight() throws CommandException {
-        this.position = new RotateRight(this.position).execute();
-    }
 
     String position() {
         return (this.position.isBlockedByObstacle() ? "O:" : "")
