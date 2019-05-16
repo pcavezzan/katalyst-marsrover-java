@@ -10,13 +10,13 @@ class MarsRover {
     private boolean blockedByObstacle;
 
 
-    public MarsRover(Grid grid) {
+    MarsRover(Grid grid) {
         this.grid = grid;
         this.position = new Coordinates(0, 0, CardinalDirection.NORTH);
         this.blockedByObstacle = false;
     }
 
-    public void execute(String commands) {
+    void execute(String commands) {
 
         try {
             Arrays.stream(commands.split("")).forEach(command -> {
@@ -56,7 +56,7 @@ class MarsRover {
         this.position = this.position.atRight();
     }
 
-    public String position() {
+    String position() {
         return (this.blockedByObstacle ? "O:" : "")
                 + this.position.getX() + ":"
                 + this.position.getY() + ":"

@@ -4,10 +4,10 @@ import java.util.List;
 
 public class Grid {
 
-    public static final int GRID_SIZE = 10;
+    private static final int GRID_SIZE = 10;
     private final List<Coordinates> obstacles;
 
-    public Grid(List<Coordinates> obstacles) {
+    Grid(List<Coordinates> obstacles) {
         this.obstacles = obstacles;
     }
 
